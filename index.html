@@ -119,10 +119,12 @@ h1,h2,h3{font-weight:600;text-wrap:balance}
 .is-dark .theme-icon .sun{opacity:0;transform:rotate(90deg) scale(.6)}
 .is-dark .theme-icon .moon{opacity:1;transform:none}
 .burger{display:none}
-.burger span{display:block;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform var(--t) var(--ease-out)}
-.burger span+span{margin-top:6px}
-.burger[aria-expanded="true"] span:first-child{transform:translateY(3.75px) rotate(45deg)}
-.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+.burger .bars{position:relative;display:block;width:18px;height:12px}
+.burger .bars i{position:absolute;left:0;top:50%;width:18px;height:1.5px;margin-top:-.75px;background:currentColor;border-radius:2px;transform-origin:50% 50%;transition:transform var(--t) var(--ease-out)}
+.burger .bars i:first-child{transform:translateY(-3.5px)}
+.burger .bars i:last-child{transform:translateY(3.5px)}
+.burger[aria-expanded="true"] .bars i:first-child{transform:rotate(45deg)}
+.burger[aria-expanded="true"] .bars i:last-child{transform:rotate(-45deg)}
 @media (max-width:860px){.nav-links,.nav-tools .seg{display:none}.burger{display:grid}}
 
 /* mobile sheet */
@@ -443,7 +445,7 @@ footer .container{align-items:center}
         </span>
       </button>
       <button type="button" class="icon-btn burger" id="burger" aria-expanded="false" aria-controls="sheet" aria-label="Abrir menú" data-en-aria="Open menu">
-        <span aria-hidden="true"><span></span><span></span></span>
+        <span class="bars" aria-hidden="true"><i></i><i></i></span>
       </button>
     </div>
   </div>
