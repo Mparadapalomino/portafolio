@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F8F6F2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121110" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:image" content="/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem("mp-theme");if(t==="dark"||t==="light")document.documentElement.dataset.theme=t}catch(e){}</script>
+<title>Marcelo Parada</title>
+<meta name="description" content="Marcelo Parada — desarrollador full-stack, mobile y web. Santa Cruz, Bolivia.">
+<meta property="og:title" content="Marcelo Parada — Desarrollador full-stack">
+<meta property="og:description" content="Apps móviles y web, de la interfaz a la base de datos.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%231B1916'/%3E%3Cpath d='M16 44V20l8 13 8-13v24M40 44V20h6a7 7 0 0 1 0 14h-6' fill='none' stroke='%23F6D9C8' stroke-width='4.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@1&display=swap">
+<style>
+/* Layout: single 1200px column on a 12-col grid. Hero = statement + fanned phones; work = full-bleed pastel panels
+   alternating with quiet text; SAE = expandable rows; about = photo + prose; contact = form + direct links. */
+:root{
+  /* neutrals carry a slight warm bias so greys feel intentional */
+  --bg:#F8F6F2; --bg-2:#F1EDE6; --surface:#FFFFFF; --ink:#1B1916; --ink-2:#4A4640; --muted:#7A746B;
+  --line:#E7E2DA; --line-strong:#D5CEC3;
+  /* pastels: one per project, used only as panel grounds */
+  --peach:#F6D9C8; --butter:#F3E7C0; --sage:#DCE5D3; --lilac:#E4DEEE; --sky:#D9E4EC;
+  --ok:#3E7A52; --err:#B4473A; --live:#5E9A6A;
+  --shadow:0 1px 2px rgba(40,30,20,.06),0 18px 40px -18px rgba(60,40,20,.28);
+
+  --font:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"Geist Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+
+  /* motion: strong ease-out for anything entering or responding to the user; ease-in-out only for on-screen movement.
+     160ms = press/hover feedback (feels instant), 240ms = toggles & small surfaces, 360ms = sheets/accordions,
+     700ms = one-time reveals that set the pace of reading. Nothing interactive exceeds 360ms. */
+  --ease-out:cubic-bezier(.23,1,.32,1);
+  --ease-io:cubic-bezier(.77,0,.175,1);
+  --ease-drawer:cubic-bezier(.32,.72,0,1);
+  --t-fast:160ms; --t:240ms; --t-med:360ms; --t-slow:700ms;
+
+  --r-sm:10px; --r:16px; --r-lg:28px;
+  --gutter:max(20px,env(safe-area-inset-left,0px));
+  --gutter-r:max(20px,env(safe-area-inset-right,0px));
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121110; --bg-2:#191816; --surface:#1E1C1A; --ink:#F3EFE9; --ink-2:#CEC8BF; --muted:#958E84;
+  --line:#2A2724; --line-strong:#3B3733;
+  --peach:#3A2B23; --butter:#36301E; --sage:#25302A; --lilac:#2C2836; --sky:#212D36;
+  --ok:#7CC496; --err:#EB8A7C; --live:#7CC496;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 48px -20px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121110; --bg-2:#191816; --surface:#1E1C1A; --ink:#F3EFE9; --ink-2:#CEC8BF; --muted:#958E84;
+  --line:#2A2724; --line-strong:#3B3733;
+  --peach:#3A2B23; --butter:#36301E; --sage:#25302A; --lilac:#2C2836; --sky:#212D36;
+  --ok:#7CC496; --err:#EB8A7C; --live:#7CC496;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 24px 48px -20px rgba(0,0,0,.7); color-scheme:dark}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--font);letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.no-transitions *,.no-transitions *::before,.no-transitions *::after{transition:none!important}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:8px}
+::selection{background:var(--peach);color:var(--ink)}
+h1,h2,h3,p{margin:0}
+h1,h2,h3{font-weight:600;text-wrap:balance}
+.container{max-width:1200px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.eyebrow{font:500 13px/1.4 var(--mono);letter-spacing:.02em;color:var(--muted)}
+.muted{color:var(--muted)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ---------- links & buttons ---------- */
+.link{background:linear-gradient(currentColor,currentColor) 0 100%/0% 1px no-repeat;transition:background-size var(--t) var(--ease-out);padding-bottom:1px}
+@media (hover:hover){.link:hover{background-size:100% 1px}}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;height:48px;padding:0 22px;border-radius:999px;
+  font-weight:500;font-size:15px;letter-spacing:-.01em;white-space:nowrap;
+  transition:transform var(--t-fast) var(--ease-out),background-color var(--t) var(--ease-out),border-color var(--t) var(--ease-out),color var(--t) var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-ghost{box-shadow:inset 0 0 0 1px var(--line-strong)}
+.btn .arrow{transition:transform var(--t) var(--ease-out)}
+@media (hover:hover){
+  .btn-primary:hover{background:color-mix(in srgb,var(--ink) 86%,var(--bg))}
+  .btn-ghost:hover{background:var(--bg-2);box-shadow:inset 0 0 0 1px var(--ink-2)}
+  .btn:hover .arrow{transform:translateX(3px)}
+  .btn:hover .arrow.up{transform:translate(2px,-2px)}
+}
+.icon-btn{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;transition:background-color var(--t) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.icon-btn:active{transform:scale(.92)}
+@media (hover:hover){.icon-btn:hover{background:var(--bg-2)}}
+
+/* ---------- header ---------- */
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;transition:background-color var(--t) var(--ease-out),box-shadow var(--t) var(--ease-out)}
+.site-header.scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:16px;letter-spacing:-.02em}
+.logo svg{flex:none}
+.nav-links{position:relative;display:flex;gap:2px;padding:4px;border-radius:999px}
+.nav-links a{position:relative;z-index:1;padding:8px 14px;font-size:14.5px;color:var(--ink-2);border-radius:999px;transition:color var(--t) var(--ease-out)}
+.nav-links a[aria-current="true"]{color:var(--ink)}
+@media (hover:hover){.nav-links a:hover{color:var(--ink)}}
+.nav-pill{position:absolute;top:4px;left:0;height:calc(100% - 8px);border-radius:999px;background:var(--bg-2);box-shadow:inset 0 0 0 1px var(--line);
+  opacity:0;transition:transform var(--t-med) var(--ease-out),width var(--t-med) var(--ease-out),opacity var(--t) var(--ease-out)}
+.nav-tools{display:flex;align-items:center;gap:6px}
+.seg{position:relative;display:flex;padding:3px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line)}
+.seg button{position:relative;z-index:1;width:38px;height:30px;font:500 12px var(--mono);color:var(--muted);transition:color var(--t) var(--ease-out)}
+.seg button[aria-pressed="true"]{color:var(--ink)}
+.seg .thumb{position:absolute;top:3px;left:3px;width:38px;height:30px;border-radius:999px;background:var(--surface);box-shadow:0 1px 2px rgba(0,0,0,.08),inset 0 0 0 1px var(--line);transition:transform var(--t) var(--ease-out)}
+.seg[data-val="en"] .thumb{transform:translateX(38px)}
+.theme-icon{position:relative;width:18px;height:18px}
+.theme-icon svg{position:absolute;inset:0;transition:transform var(--t-med) var(--ease-out),opacity var(--t) var(--ease-out)}
+.theme-icon .moon{opacity:0;transform:rotate(-90deg) scale(.6)}
+.is-dark .theme-icon .sun{opacity:0;transform:rotate(90deg) scale(.6)}
+.is-dark .theme-icon .moon{opacity:1;transform:none}
+.burger{display:none}
+.burger span{display:block;width:18px;height:1.5px;background:currentColor;border-radius:2px;transition:transform var(--t) var(--ease-out)}
+.burger span+span{margin-top:6px}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.75px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.75px) rotate(-45deg)}
+@media (max-width:860px){.nav-links,.nav-tools .seg{display:none}.burger{display:grid}}
+
+/* mobile sheet */
+.sheet{position:fixed;inset:0;z-index:45;background:var(--bg);padding:calc(env(safe-area-inset-top,0px) + 92px) var(--gutter-r) calc(env(safe-area-inset-bottom,0px) + 28px) var(--gutter);
+  display:flex;flex-direction:column;justify-content:space-between;
+  clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path var(--t-med) var(--ease-drawer),visibility 0s linear var(--t-med)}
+.sheet.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path var(--t-med) var(--ease-drawer),visibility 0s}
+.sheet nav{display:grid;gap:4px}
+.sheet nav a{font-size:clamp(34px,10vw,44px);font-weight:600;letter-spacing:-.035em;line-height:1.2;padding:4px 0;
+  opacity:0;transform:translateY(12px);transition:opacity var(--t) var(--ease-out),transform var(--t-med) var(--ease-out)}
+.sheet.open nav a{opacity:1;transform:none}
+.sheet.open nav a:nth-child(1){transition-delay:60ms}.sheet.open nav a:nth-child(2){transition-delay:100ms}
+.sheet.open nav a:nth-child(3){transition-delay:140ms}.sheet.open nav a:nth-child(4){transition-delay:180ms}
+.sheet-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;opacity:0;transition:opacity var(--t) var(--ease-out)}
+.sheet.open .sheet-foot{opacity:1;transition-delay:200ms}
+body.menu-open{overflow:hidden}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;align-items:center;padding-block:56px 40px}
+.hero-copy{grid-column:1/span 7}
+.status{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);padding:6px 14px 6px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);background:var(--surface)}
+.dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--live)}
+.dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--live);animation:ping 2.4s var(--ease-out) infinite}
+@keyframes ping{0%{transform:scale(1);opacity:.6}70%,100%{transform:scale(2.6);opacity:0}}
+.hero h1{margin-top:28px;font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.045em;font-weight:600}
+.hero h1 .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.hero h1 .line>span{display:block}
+.hero h1 .soft{color:var(--muted)}
+.hero .lead{margin-top:24px;font-size:clamp(17px,1.6vw,19px);line-height:1.55;color:var(--ink-2);max-width:34em}
+.hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
+.hero-art{grid-column:8/span 5;position:relative;height:clamp(420px,46vw,580px)}
+.hero-art .phone{position:absolute;width:52%;top:50%;left:50%}
+.hero-art .p1{transform:translate(-112%,-46%) rotate(-7deg)}
+.hero-art .p2{transform:translate(-50%,-52%);z-index:2}
+.hero-art .p3{transform:translate(12%,-44%) rotate(7deg)}
+.hero-blob{position:absolute;inset:8% 4% 6%;border-radius:40% 48% 44% 52%/52% 44% 56% 48%;background:var(--peach);opacity:.9}
+.caps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding-block:40px 24px;border-top:1px solid var(--line);margin-top:40px}
+.cap h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.cap p{margin-top:6px;font-size:15px;color:var(--muted);line-height:1.5}
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-block:32px 8px}
+  .hero-copy,.hero-art{grid-column:1/-1}
+  .hero-art{height:clamp(360px,92vw,520px);margin-top:12px}
+  .caps{grid-template-columns:1fr;gap:18px}
+}
+
+/* hero load choreography: copy lines rise from a mask, then phones settle. Runs once, ~1.1s total. */
+.js .hero h1 .line>span{animation:rise var(--t-slow) var(--ease-out) both}
+.js .hero h1 .line:nth-child(2)>span{animation-delay:70ms}
+.js .hero h1 .line:nth-child(3)>span{animation-delay:140ms}
+.js .hero .fade-in{animation:fadeUp var(--t-slow) var(--ease-out) both}
+.js .hero .status.fade-in{animation-delay:0ms}
+.js .hero .lead.fade-in{animation-delay:220ms}
+.js .hero .actions.fade-in{animation-delay:300ms}
+.js .hero-art .phone{animation:settle 900ms var(--ease-out) backwards}
+.js .hero-art .p2{animation-delay:260ms}.js .hero-art .p1{animation-delay:360ms}.js .hero-art .p3{animation-delay:420ms}
+.js .hero-blob{animation:blobIn 1000ms var(--ease-out) both 120ms}
+@keyframes rise{from{transform:translateY(105%)}to{transform:none}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes settle{from{opacity:0;translate:0 40px}to{opacity:1;translate:0 0}}
+@keyframes blobIn{from{opacity:0;scale:.92}to{opacity:.9;scale:1}}
+
+/* ---------- phone + image skeleton ---------- */
+.phone{border-radius:clamp(22px,3vw,34px);padding:clamp(4px,.5vw,6px);background:#151412;box-shadow:var(--shadow);will-change:transform}
+.screen{position:relative;border-radius:calc(clamp(22px,3vw,34px) - 5px);overflow:hidden;aspect-ratio:540/1048;background:var(--bg-2)}
+.screen img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms var(--ease-out)}
+.screen.loaded img{opacity:1}
+.skel::before{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,color-mix(in srgb,var(--surface) 70%,transparent) 50%,transparent 70%) var(--bg-2);
+  background-size:220% 100%;animation:shimmer 1.4s linear infinite;transition:opacity 300ms var(--ease-out)}
+.skel.loaded::before{opacity:0;animation:none}
+@keyframes shimmer{from{background-position:120% 0}to{background-position:-120% 0}}
+
+/* ---------- sections ---------- */
+.section{padding-block:clamp(72px,10vw,128px)}
+.s-head{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-bottom:clamp(36px,5vw,56px);align-items:end}
+.s-head .eyebrow{grid-column:1/-1}
+.s-head h2{grid-column:1/span 7;font-size:clamp(32px,4.2vw,52px);line-height:1.05;letter-spacing:-.04em}
+.s-head p{grid-column:9/span 4;color:var(--muted);font-size:16px;line-height:1.55}
+@media (max-width:900px){.s-head h2,.s-head p{grid-column:1/-1}}
+
+/* ---------- work ---------- */
+.work{display:grid;gap:clamp(64px,8vw,104px)}
+.work>*,.project,.pair>*{min-width:0}
+main{overflow-x:clip}
+.panel{position:relative;border-radius:var(--r-lg);overflow:hidden;padding:clamp(28px,5vw,64px) clamp(16px,4vw,56px) 0;display:flex;justify-content:center;gap:clamp(10px,2.2vw,28px)}
+.panel .phone{width:clamp(150px,22vw,260px);flex:none;transition:transform 600ms var(--ease-out);margin-bottom:-12%}
+.panel .phone:nth-child(2){transform:translateY(-6%)}
+@media (hover:hover){
+  .project:hover .panel .phone:nth-child(1){transform:translate(-6px,-2%) rotate(-1.5deg)}
+  .project:hover .panel .phone:nth-child(2){transform:translateY(-9%)}
+  .project:hover .panel .phone:nth-child(3){transform:translate(6px,-2%) rotate(1.5deg)}
+}
+.bg-peach{background:var(--peach)}.bg-lilac{background:var(--lilac)}.bg-sage{background:var(--sage)}.bg-butter{background:var(--butter)}.bg-sky{background:var(--sky)}
+.p-body{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;margin-top:clamp(28px,4vw,40px)}
+.p-title{grid-column:1/span 4}
+.p-title .meta{display:flex;align-items:center;gap:12px}
+.app-icon{width:44px;height:44px;border-radius:11px;box-shadow:0 0 0 1px var(--line)}
+.p-title h3{font-size:clamp(26px,2.8vw,34px);letter-spacing:-.035em;line-height:1.1}
+.p-title .eyebrow{margin-top:10px}
+.p-text{grid-column:5/span 5;display:grid;gap:14px;color:var(--ink-2)}
+.p-facts{grid-column:10/span 3;margin:0;display:grid;gap:14px;align-content:start}
+.p-facts div{display:grid;gap:2px}
+.p-facts dt{font:500 12px/1.4 var(--mono);color:var(--muted)}
+.p-facts dd{margin:0;font-size:15px;line-height:1.45}
+.p-facts a{display:inline-flex;align-items:center;gap:6px;font-weight:500}
+@media (max-width:900px){
+  .p-title,.p-text,.p-facts{grid-column:1/-1}
+  .p-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 24px}
+}
+@media (max-width:640px){
+  .panel{justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-inline:24px;-webkit-overflow-scrolling:touch}
+  .panel::-webkit-scrollbar{display:none}
+  .panel .phone{width:62vw;scroll-snap-align:center;margin-bottom:-18%}
+  .panel .phone:nth-child(2){transform:none}
+  .panel::after{content:"";flex:0 0 1px}
+}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(24px,3vw,32px)}
+.pair .panel{padding-top:clamp(28px,4vw,48px);height:clamp(340px,38vw,480px);align-items:flex-start}
+.pair .panel .phone{margin-bottom:0}
+.pair .panel .phone{width:clamp(150px,18vw,220px)}
+.pair .p-body{grid-template-columns:1fr;gap:14px}
+.pair .p-title,.pair .p-text,.pair .p-facts{grid-column:1/-1}
+.pair .p-facts{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 24px}
+.pair .panel.icon-only{align-items:center;padding-bottom:clamp(28px,4vw,48px)}
+.panel.icon-only img{width:clamp(96px,11vw,132px);height:auto;border-radius:26%;box-shadow:var(--shadow)}
+.tag-soft{display:inline-block;font:500 12px var(--mono);padding:3px 9px;border-radius:999px;background:var(--bg-2);color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--line)}
+@media (max-width:820px){.pair{grid-template-columns:1fr;gap:64px}}
+
+/* ---------- SAE rows ---------- */
+.rows{border-top:1px solid var(--line)}
+.row{border-bottom:1px solid var(--line)}
+.row-head{width:100%;display:grid;grid-template-columns:52px minmax(0,1fr) auto 28px;gap:18px;align-items:center;padding:20px 4px;text-align:left;border-radius:12px;
+  transition:background-color var(--t) var(--ease-out)}
+@media (hover:hover){.row-head:hover{background:var(--bg-2)}}
+.row-head:active .plus{transform:scale(.88)}
+.row-ic{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;background:var(--bg-2);box-shadow:inset 0 0 0 1px var(--line);font:500 12px var(--mono);color:var(--muted)}
+.row-ic img{width:44px;height:44px;border-radius:11px}
+.row-title{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.row-sub{display:block;font-size:15px;color:var(--muted);font-weight:400;letter-spacing:-.005em;margin-top:2px}
+.row-kind{font:500 12px var(--mono);color:var(--muted)}
+.plus{position:relative;width:20px;height:20px;justify-self:end;transition:transform var(--t) var(--ease-out)}
+.plus::before,.plus::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;margin:-.75px 0 0 -7px;background:currentColor;border-radius:2px;transition:transform var(--t-med) var(--ease-out)}
+.plus::after{transform:rotate(90deg)}
+.row.open .plus::after{transform:rotate(0)}
+.row-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--t-med) var(--ease-out)}
+.row.open .row-body{grid-template-rows:1fr}
+.row-body>div{overflow:hidden}
+.row-inner{display:grid;grid-template-columns:52px minmax(0,1fr) minmax(0,.7fr);gap:18px;padding:0 4px 28px;opacity:0;transform:translateY(-4px);transition:opacity var(--t) var(--ease-out),transform var(--t-med) var(--ease-out)}
+.row.open .row-inner{opacity:1;transform:none;transition-delay:60ms}
+.row-inner p{color:var(--ink-2);max-width:60ch}
+.row-inner p+p{margin-top:10px}
+.row-inner .stack{font:400 13px/1.7 var(--mono);color:var(--muted)}
+@media (max-width:760px){
+  .row-head{grid-template-columns:44px minmax(0,1fr) 24px;gap:14px}
+  .row-kind{display:none}
+  .row-inner{grid-template-columns:1fr;padding-left:62px;gap:12px}
+}
+.footnote{margin-top:24px;font-size:14px;color:var(--muted)}
+
+/* ---------- about ---------- */
+.about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.about figure{grid-column:1/span 3;margin:0}
+.portrait{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--butter);aspect-ratio:282/257}
+.portrait img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms var(--ease-out)}
+.portrait.loaded img{opacity:1}
+.about figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
+.about-text{grid-column:5/span 5;display:grid;gap:18px;font-size:clamp(18px,1.6vw,20px);line-height:1.55;letter-spacing:-.012em}
+.about-text p:first-child{color:var(--ink)}
+.about-text p{color:var(--ink-2)}
+.facts{grid-column:5/span 8;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:24px;padding-top:28px;border-top:1px solid var(--line)}
+.facts h3{font:500 12px/1.4 var(--mono);color:var(--muted);letter-spacing:.02em}
+.facts ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;font-size:15px;line-height:1.45}
+.facts li span{color:var(--muted)}
+@media (max-width:900px){
+  .about figure{grid-column:1/-1;max-width:240px}
+  .about-text,.facts{grid-column:1/-1}
+  .facts{grid-template-columns:1fr;gap:22px}
+}
+
+/* ---------- contact ---------- */
+.contact{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.contact-intro{grid-column:1/span 5}
+.contact-intro h2{font-size:clamp(40px,5.6vw,72px);line-height:1;letter-spacing:-.045em}
+.contact-intro p{margin-top:18px;color:var(--ink-2);max-width:30em}
+.direct{margin-top:36px;display:grid;gap:2px}
+.direct-row{display:grid;grid-template-columns:96px minmax(0,1fr) auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.direct-row .k{font:500 12px var(--mono);color:var(--muted)}
+.direct-row .v{font-size:15.5px;overflow-wrap:anywhere}
+.copy{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--muted);transition:background-color var(--t) var(--ease-out),color var(--t) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.copy:active{transform:scale(.9)}
+@media (hover:hover){.copy:hover{background:var(--bg-2);color:var(--ink)}}
+.copy .ok{display:none}.copy.done .ok{display:block;animation:pop var(--t) var(--ease-out)}.copy.done .cp{display:none}
+@keyframes pop{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
+
+.form-wrap{grid-column:7/span 6;position:relative}
+form.card{background:var(--surface);border-radius:var(--r-lg);padding:clamp(22px,3.4vw,40px);box-shadow:inset 0 0 0 1px var(--line);display:grid;gap:20px}
+.field{display:grid;gap:8px}
+.field label,.field .lbl{font-size:14px;font-weight:500;color:var(--ink-2)}
+.input{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--bg);border:0;border-radius:var(--r-sm);padding:13px 14px;
+  box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow var(--t) var(--ease-out),background-color var(--t) var(--ease-out)}
+.input::placeholder{color:var(--muted);opacity:.8}
+@media (hover:hover){.input:hover{box-shadow:inset 0 0 0 1px var(--line-strong)}}
+.input:focus{outline:none;background:var(--surface);box-shadow:inset 0 0 0 1px var(--ink),0 0 0 4px color-mix(in srgb,var(--ink) 8%,transparent)}
+textarea.input{min-height:132px;resize:vertical;line-height:1.5}
+.field.invalid .input{box-shadow:inset 0 0 0 1px var(--err),0 0 0 4px color-mix(in srgb,var(--err) 12%,transparent)}
+.err{display:grid;grid-template-rows:0fr;transition:grid-template-rows var(--t) var(--ease-out)}
+.err>span{overflow:hidden;font-size:13.5px;color:var(--err)}
+.field.invalid .err{grid-template-rows:1fr}
+.shake{animation:shake 320ms var(--ease-out)}
+@keyframes shake{20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-2px)}80%{transform:translateX(2px)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:inline-flex;height:38px;align-items:center;padding:0 16px;border-radius:999px;font-size:14.5px;box-shadow:inset 0 0 0 1px var(--line-strong);color:var(--ink-2);
+  transition:background-color var(--t) var(--ease-out),color var(--t) var(--ease-out),box-shadow var(--t) var(--ease-out),transform var(--t-fast) var(--ease-out)}
+.chip input:checked+span{background:var(--ink);color:var(--bg);box-shadow:none}
+.chip input:focus-visible+span{outline:2px solid var(--ink);outline-offset:2px}
+.chip:active span{transform:scale(.96)}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px}
+.counter{font:400 12.5px var(--mono);color:var(--muted)}
+.submit{min-width:168px;justify-content:center}
+.submit .label,.submit .spin,.submit .check{transition:opacity var(--t) var(--ease-out),transform var(--t) var(--ease-out)}
+.submit .spin,.submit .check{position:absolute;left:50%;top:50%;margin:-9px 0 0 -9px;opacity:0;transform:scale(.6)}
+.submit.loading .label{opacity:0;transform:translateY(-6px)}
+.submit.loading .spin{opacity:1;transform:none;animation:spin .8s linear infinite}
+.submit.success .label{opacity:0}
+.submit.success .check{opacity:1;transform:none}
+@keyframes spin{to{rotate:360deg}}
+.success-panel{position:absolute;inset:0;border-radius:var(--r-lg);background:var(--sage);display:grid;align-content:center;justify-items:start;gap:14px;padding:clamp(24px,4vw,48px);
+  opacity:0;visibility:hidden;transform:scale(.98);transition:opacity var(--t-med) var(--ease-out),transform var(--t-med) var(--ease-out),visibility 0s linear var(--t-med)}
+.success-panel.show{opacity:1;visibility:visible;transform:none;transition:opacity var(--t-med) var(--ease-out),transform var(--t-med) var(--ease-out),visibility 0s}
+.success-panel h3{font-size:clamp(26px,3vw,34px);letter-spacing:-.035em;line-height:1.1}
+.success-panel p{color:var(--ink-2);max-width:32em}
+.success-panel .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.success-panel .again{font-size:14px;color:var(--ink-2);margin-top:4px}
+@media (max-width:900px){.contact-intro,.form-wrap{grid-column:1/-1}}
+
+/* ---------- footer ---------- */
+footer{padding-block:28px calc(36px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);font-size:14px;color:var(--muted)}
+footer .container{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between}
+.clock{font-family:var(--mono);font-size:13px}
+footer .container{align-items:center}
+.signoff{font-family:"Instrument Serif","Cormorant Garamond",Georgia,"Times New Roman",serif;font-style:italic;font-size:16px;letter-spacing:0;line-height:1.4;color:var(--ink-2)}
+.signoff .heart{display:inline-block;color:var(--muted);transition:transform var(--t-med) var(--ease-out),color var(--t) var(--ease-out)}
+@media (hover:hover){.signoff:hover .heart{transform:scale(1.18) rotate(-6deg);color:#C9705A}}
+
+/* ---------- floating: CTA + back to top ---------- */
+.float{position:fixed;z-index:40;bottom:calc(20px + env(safe-area-inset-bottom,0px));
+  opacity:0;transform:translateY(16px) scale(.96);pointer-events:none;transition:opacity var(--t) var(--ease-out),transform var(--t-med) var(--ease-out)}
+.float.show{opacity:1;transform:none;pointer-events:auto}
+.float-cta{left:50%;translate:-50% 0;display:flex;align-items:center;gap:10px;height:52px;padding:0 20px 0 6px;border-radius:999px;background:var(--ink);color:var(--bg);font-size:15px;font-weight:500;box-shadow:var(--shadow)}
+.float-cta img{width:40px;height:40px;border-radius:50%;object-fit:cover}
+.float-cta:active{scale:.97}
+.to-top{right:calc(20px + env(safe-area-inset-right,0px));width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--surface);box-shadow:var(--shadow),inset 0 0 0 1px var(--line)}
+.to-top:active{scale:.92}
+@media (hover:hover){.to-top svg{transition:transform var(--t) var(--ease-out)}.to-top:hover svg{transform:translateY(-2px)}}
+@media (max-width:640px){.float-cta{left:calc(20px + env(safe-area-inset-left,0px));translate:0 0}}
+.to-top .ring{position:absolute;inset:0;width:100%;height:100%;rotate:-90deg;pointer-events:none}
+.to-top .ring circle{fill:none;stroke-width:2}
+.to-top .ring .track{stroke:var(--line)}
+.to-top .ring .bar{stroke:var(--ink);stroke-linecap:round;stroke-dasharray:138.23;stroke-dashoffset:138.23}
+
+/* reading progress: driven straight from scroll position (no transition) so it never lags the finger */
+.progress{position:fixed;z-index:55;top:env(safe-area-inset-top,0px);left:0;right:0;height:2px;pointer-events:none}
+.progress span{display:block;height:100%;background:var(--ink);transform-origin:0 50%;transform:scaleX(0);will-change:transform}
+
+/* ---------- toast ---------- */
+.toasts{position:fixed;z-index:70;left:50%;top:calc(16px + env(safe-area-inset-top,0px));translate:-50% 0;display:grid;gap:8px;width:min(420px,calc(100% - 32px));pointer-events:none}
+.toast{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:var(--surface);box-shadow:var(--shadow),inset 0 0 0 1px var(--line);font-size:14.5px;line-height:1.45;pointer-events:auto;
+  animation:toastIn var(--t-med) var(--ease-out) both}
+.toast.out{animation:toastOut var(--t) var(--ease-io) both}
+.toast .ti{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;margin-top:1px;color:var(--bg)}
+.toast.ok .ti{background:var(--ok)}.toast.error .ti{background:var(--err)}
+.toast strong{display:block;font-weight:600}
+@keyframes toastIn{from{opacity:0;transform:translateY(-12px) scale(.97)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateY(-8px) scale(.98)}}
+
+/* ---------- scroll reveal (only for content that starts below the fold) ---------- */
+.pre{opacity:0;transform:translateY(16px)}
+.revealed{opacity:1;transform:none;transition:opacity var(--t-slow) var(--ease-out),transform var(--t-slow) var(--ease-out);transition-delay:var(--d,0ms)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:1ms!important;animation-iteration-count:1!important;transition-duration:1ms!important;transition-delay:0ms!important}
+  .pre{opacity:1;transform:none}
+  .dot::after{display:none}
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="progress" aria-hidden="true"><span id="progress"></span></div>
+
+<header class="site-header" id="header">
+  <div class="container nav">
+    <a href="#top" class="logo" aria-label="Marcelo Parada — inicio">
+      <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="currentColor"/><path d="M16 44V20l8 13 8-13v24M40 44V20h6a7 7 0 0 1 0 14h-6" fill="none" stroke="var(--bg)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Marcelo Parada
+    </a>
+    <nav class="nav-links" id="navlinks" aria-label="Principal">
+      <span class="nav-pill" id="navpill" aria-hidden="true"></span>
+      <a href="#proyectos" data-en="Work">Proyectos</a>
+      <a href="#experiencia" data-en="Experience">Experiencia</a>
+      <a href="#sobre-mi" data-en="About">Sobre mí</a>
+      <a href="#contacto" data-en="Contact">Contacto</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="seg" id="langseg" data-val="es" role="group" aria-label="Idioma">
+        <span class="thumb" aria-hidden="true"></span>
+        <button type="button" id="lang-es" data-lang="es" aria-pressed="true">ES</button>
+        <button type="button" id="lang-en" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+      <button type="button" class="icon-btn theme-btn" id="theme-btn" aria-label="Cambiar tema" data-en-aria="Toggle theme">
+        <span class="theme-icon" aria-hidden="true">
+          <svg class="sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M4.6 4.6l1.6 1.6M17.8 17.8l1.6 1.6M2.5 12h2.2M19.3 12h2.2M4.6 19.4l1.6-1.6M17.8 6.2l1.6-1.6"/></svg>
+          <svg class="moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6Z"/></svg>
+        </span>
+      </button>
+      <button type="button" class="icon-btn burger" id="burger" aria-expanded="false" aria-controls="sheet" aria-label="Abrir menú" data-en-aria="Open menu">
+        <span aria-hidden="true"><span></span><span></span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Menú móvil">
+    <a href="#proyectos" data-en="Work">Proyectos</a>
+    <a href="#experiencia" data-en="Experience">Experiencia</a>
+    <a href="#sobre-mi" data-en="About">Sobre mí</a>
+    <a href="#contacto" data-en="Contact">Contacto</a>
+  </nav>
+  <div class="sheet-foot">
+    <div class="seg" id="langseg2" data-val="es" role="group" aria-label="Idioma">
+      <span class="thumb" aria-hidden="true"></span>
+      <button type="button" id="lang-es-2" data-lang="es" aria-pressed="true">ES</button>
+      <button type="button" id="lang-en-2" data-lang="en" aria-pressed="false">EN</button>
+    </div>
+    <span class="muted" style="font-size:14px">Santa Cruz, Bolivia</span>
+  </div>
+</div>
+
+<main id="top">
+  <!-- HERO -->
+  <div class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="status fade-in"><span class="dot" aria-hidden="true"></span><span data-en="Open to roles and projects">Disponible para roles y proyectos</span></span>
+        <h1 id="hero-title">
+          <span class="line"><span data-en="I build mobile">Construyo apps</span></span>
+          <span class="line"><span data-en="and web apps,">móviles y web,</span></span>
+          <span class="line"><span class="soft" data-en="end to end.">de punta a punta.</span></span>
+        </h1>
+        <p class="lead fade-in" data-en="I'm Marcelo Parada, a full-stack developer focused on mobile, based in Santa Cruz, Bolivia. I make native Android apps, cross-platform apps with Flutter, websites, and the backends behind them.">Soy Marcelo Parada, desarrollador full-stack con foco en mobile, en Santa Cruz, Bolivia. Hago apps nativas para Android, multiplataforma con Flutter, sitios web y los backends que las sostienen.</p>
+        <div class="actions fade-in">
+          <a href="#proyectos" class="btn btn-primary"><span data-en="See my work">Ver proyectos</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+          <a href="#contacto" class="btn btn-ghost"><span data-en="Get in touch">Escríbeme</span></a>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="hero-blob"></div>
+        <div class="phone p1" data-parallax="0.06"><div class="screen skel"><img src="img/inv-home.webp" alt="" width="540" height="1048" decoding="async" fetchpriority="high"></div></div>
+        <div class="phone p2" data-parallax="-0.04"><div class="screen skel"><img src="img/ag-hoy.webp" alt="" width="540" height="1048" decoding="async" fetchpriority="high"></div></div>
+        <div class="phone p3" data-parallax="0.1"><div class="screen skel"><img src="img/li-home.webp" alt="" width="540" height="1048" decoding="async"></div></div>
+      </div>
+    </section>
+
+    <div class="caps" data-reveal-group>
+      <div class="cap" data-reveal><h3>Mobile</h3><p data-en="Native Android with Kotlin and Java, and Flutter for Android, iOS and web.">Android nativo con Kotlin y Java, y Flutter para Android, iOS y web.</p></div>
+      <div class="cap" data-reveal><h3>Web</h3><p data-en="Websites and installable web apps with Astro, JavaScript and Tailwind.">Sitios y apps web instalables con Astro, JavaScript y Tailwind.</p></div>
+      <div class="cap" data-reveal><h3>Backend</h3><p data-en="Supabase and Postgres, Firebase, and PHP services on Oracle.">Supabase y Postgres, Firebase, y servicios PHP sobre Oracle.</p></div>
+    </div>
+  </div>
+
+  <!-- WORK -->
+  <section class="section" id="proyectos" aria-labelledby="work-title">
+    <div class="container">
+      <div class="s-head" data-reveal>
+        <span class="eyebrow" data-en="Selected work">Proyectos seleccionados</span>
+        <h2 id="work-title" data-en="Products I design, build and ship.">Productos que diseño, programo y publico.</h2>
+        <p data-en="From the first sketch to the database and the installable file. These are my own and client projects.">Desde el primer boceto hasta la base de datos y el instalable. Estos son proyectos propios y de clientes.</p>
+      </div>
+
+      <div class="work">
+        <!-- easyGO -->
+        <article class="project" data-reveal>
+          <div class="panel bg-peach">
+            <div class="phone"><div class="screen skel"><img src="img/inv-reportes.webp" alt="eGO Inventarios: reportes de movimientos por día" data-en-alt="eGO Inventarios: daily movement report" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+            <div class="phone"><div class="screen skel"><img src="img/ag-agenda.webp" alt="eGO Agendas: agenda del día con huecos libres" data-en-alt="eGO Agendas: day view with free slots" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+            <div class="phone"><div class="screen skel"><img src="img/inv-detalle.webp" alt="eGO Inventarios: detalle de producto con historial de stock" data-en-alt="eGO Inventarios: product detail with stock history" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+          </div>
+          <div class="p-body">
+            <div class="p-title">
+              <div class="meta"><img class="app-icon" src="img/ic-ego.png" alt="" width="44" height="44" loading="lazy"><h3>easyGO</h3></div>
+              <p class="eyebrow" data-en="Co-founder · 2026 — now">Cofundador · 2026 — hoy</p>
+            </div>
+            <div class="p-text">
+              <p data-en="A suite of apps for small businesses in Bolivia that run on a notebook and WhatsApp today. All apps share one backend and one login, and each business turns on only what it needs.">Una suite de apps para pequeños negocios de Bolivia que hoy se manejan con cuaderno y WhatsApp. Todas comparten un backend y un login, y cada negocio activa solo lo que necesita.</p>
+              <p data-en="Every screen answers one question at a glance: “How much do I have left, and what am I missing?” in Inventory, “What's on today, and when am I free?” in Agendas. Frequent actions take three taps at most.">Cada pantalla responde una pregunta de un vistazo: «¿Cuánto me queda y qué me falta?» en Inventarios, «¿Qué tengo hoy y cuándo estoy libre?» en Agendas. Las acciones frecuentes toman tres toques como máximo.</p>
+            </div>
+            <dl class="p-facts">
+              <div><dt data-en="Role">Rol</dt><dd data-en="Product design, apps and backend">Diseño de producto, apps y backend</dd></div>
+              <div><dt>Stack</dt><dd>Flutter · Riverpod · Supabase · Postgres · Astro</dd></div>
+              <div><dt data-en="Apps">Apps</dt><dd data-en="Inventory, Agendas, Orders, Finance">Inventarios, Agendas, Pedidos, Finanzas</dd></div>
+              <div><dt>Web</dt><dd><a class="link" href="https://web-easygo.vercel.app/" target="_blank" rel="noopener">web-easygo.vercel.app<svg class="arrow up" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a></dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- Listti -->
+        <article class="project" data-reveal>
+          <div class="panel bg-lilac">
+            <div class="phone"><div class="screen skel"><img src="img/li-lista.webp" alt="Listti: lista de compras con ítems marcados" data-en-alt="Listti: shopping list with checked items" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+            <div class="phone"><div class="screen skel"><img src="img/li-home.webp" alt="Listti: inicio con todas las listas" data-en-alt="Listti: home with all lists" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+            <div class="phone"><div class="screen skel"><img src="img/li-reportes.webp" alt="Listti: reportes por categoría" data-en-alt="Listti: reports by category" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+          </div>
+          <div class="p-body">
+            <div class="p-title">
+              <div class="meta"><img class="app-icon" src="img/ic-listti.png" alt="" width="44" height="44" loading="lazy"><h3>Listti</h3></div>
+              <p class="eyebrow" data-en="Personal project · Android">Proyecto personal · Android</p>
+            </div>
+            <div class="p-text">
+              <p data-en="Lists for everything: groceries, work, school. They reorder by dragging, can be locked with a password, and keep a log of every change.">Listas para todo: compras, trabajo, estudio. Se reordenan arrastrando, se pueden bloquear con contraseña y guardan un registro de cada cambio.</p>
+              <p data-en="It includes an AI assistant that reads your real lists before answering, so it suggests based on what you actually buy.">Incluye un asistente con IA que lee tus listas reales antes de responder, así sugiere en base a lo que de verdad compras.</p>
+            </div>
+            <dl class="p-facts">
+              <div><dt data-en="Role">Rol</dt><dd data-en="Design and development">Diseño y desarrollo</dd></div>
+              <div><dt>Stack</dt><dd>Kotlin · Jetpack Compose · Hilt · Room · Firestore · Gemini</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <!-- pair -->
+        <div class="pair">
+          <article class="project" data-reveal>
+            <div class="panel bg-sage">
+              <div class="phone"><div class="screen skel"><img src="img/fi-analisis.webp" alt="2y2son4: análisis del mes con gasto por día" data-en-alt="2y2son4: monthly analysis with daily spending" width="540" height="1048" loading="lazy" decoding="async"></div></div>
+            </div>
+            <div class="p-body">
+              <div class="p-title">
+                <div class="meta"><img class="app-icon" src="img/ic-2y2son4.png" alt="" width="44" height="44" loading="lazy"><h3>2y2son4</h3></div>
+                <p class="eyebrow" data-en="Personal project · Android · v2.0.4">Proyecto personal · Android · v2.0.4</p>
+              </div>
+              <div class="p-text">
+                <p data-en="Shared finances for couples: budgets with usage alerts, wallets, a savings fund with month-end close, and reminders that reschedule themselves after a reboot.">Finanzas compartidas en pareja: presupuestos con alertas de uso, billeteras, un fondo de ahorro con cierre de mes y recordatorios que se reprograman solos al reiniciar el teléfono.</p>
+              </div>
+              <dl class="p-facts">
+                <div><dt>Stack</dt><dd>Kotlin · Compose · Firestore · Gemini</dd></div>
+              </dl>
+            </div>
+          </article>
+
+          <article class="project" data-reveal style="--d:80ms">
+            <div class="panel bg-butter icon-only">
+              <img src="img/ic-dondevamos.png" alt="Ícono de Donde Vamos" data-en-alt="Donde Vamos icon" width="160" height="160" loading="lazy">
+            </div>
+            <div class="p-body">
+              <div class="p-title">
+                <div class="meta"><h3>Donde Vamos</h3></div>
+                <p class="eyebrow" data-en="Client project · Flutter · in development">Proyecto para cliente · Flutter · en desarrollo</p>
+              </div>
+              <div class="p-text">
+                <p data-en="An app to discover restaurants, outings and hotels in Bolivia without signing up. Businesses publish and manage their listing with photos and video.">App para descubrir restaurantes, paseos y hoteles en Bolivia sin crear cuenta. Los negocios publican y administran su ficha con fotos y video.</p>
+              </div>
+              <dl class="p-facts">
+                <div><dt>Stack</dt><dd>Flutter · Supabase · Google Maps</dd></div>
+              </dl>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experiencia" aria-labelledby="exp-title" style="padding-top:clamp(40px,6vw,72px)">
+    <div class="container">
+      <div class="s-head" data-reveal>
+        <span class="eyebrow" data-en="2023 — now · Development and Support Assistant">2023 — hoy · Asistente de Desarrollo y Soporte</span>
+        <h2 id="exp-title" data-en="SAE Bolivia">SAE Bolivia</h2>
+        <p data-en="I build and maintain the company's internal apps and systems, and I support the field teams who use them every day.">Desarrollo y mantengo las apps y sistemas internos de la empresa, y doy soporte a los equipos de campo que los usan cada día.</p>
+      </div>
+
+      <div class="rows" data-reveal>
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r1" id="rh1">
+            <span class="row-ic"><img src="img/ic-optitrade.png" alt="" width="44" height="44" loading="lazy"></span>
+            <span class="row-title">OptiTrade<span class="row-sub" data-en="Trade marketing app">App de trade marketing</span></span>
+            <span class="row-kind">Android</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r1" role="region" aria-labelledby="rh1"><div><div class="row-inner"><span></span>
+            <div><p data-en="Point-of-sale tasks in pharmacies: stock-outs and expiry by lot, shelf arrangement, restocking and product display, with a route plan the supervisor approves or rejects.">Tareas en puntos de venta: faltantes y vencimientos por lote, acomodo, reposición y presentación de productos, con un rutero que el supervisor aprueba o rechaza.</p>
+            <p data-en="Photos are compressed under 1 MB, uploaded over FTP and recorded in Oracle in a single transaction.">Las fotos se comprimen a menos de 1 MB, se suben por FTP y se registran en Oracle en una sola transacción.</p></div>
+            <p class="stack">Java · SQLite · WorkManager<br>Google Maps · PHP · Oracle · FTP</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r2" id="rh2">
+            <span class="row-ic"><img src="img/ic-recetex.png" alt="" width="44" height="44" loading="lazy"></span>
+            <span class="row-title">RECETEX<span class="row-sub" data-en="Digital prescriptions">Receta digital</span></span>
+            <span class="row-kind">PWA</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r2" role="region" aria-labelledby="rh2"><div><div class="row-inner"><span></span>
+            <div><p data-en="The doctor issues a prescription with a QR code, the patient takes it to the pharmacy, the discount is applied and the company can trace each one.">El médico emite una receta con código QR, el paciente la lleva a la farmacia, se aplica el descuento y la empresa puede seguir cada receta.</p>
+            <p data-en="QR scanning with the native camera, and the app installs on the phone like a regular one.">Escaneo de QR con la cámara nativa, y se instala en el teléfono como una app normal.</p></div>
+            <p class="stack">PHP · Oracle · PWA<br>Service Worker · jsQR</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r3" id="rh3">
+            <span class="row-ic"><img src="img/ic-optimum.png" alt="" width="44" height="44" loading="lazy"></span>
+            <span class="row-title">OPTIMUM<span class="row-sub" data-en="Maintenance and improvements">Mantenimiento y mejoras</span></span>
+            <span class="row-kind">Android</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r3" role="region" aria-labelledby="rh3"><div><div class="row-inner"><span></span>
+            <div><p data-en="App used by pharmaceutical sales reps, in production. I maintain it: I fixed offline sync for visits and signatures so nothing gets duplicated or lost, and added business-rule validation to the weekly schedule.">App de visitadores médicos en producción. Me encargo de su mantenimiento: corregí la sincronización sin conexión de visitas y firmas para que nada se duplique ni se pierda, y agregué validaciones de negocio a la agenda semanal.</p></div>
+            <p class="stack">Java · SQLite · Volley<br>WorkManager · Google Maps</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r4" id="rh4">
+            <span class="row-ic"><img src="img/ic-saewarehouse.png" alt="" width="44" height="44" loading="lazy"></span>
+            <span class="row-title">SAEWarehouse<span class="row-sub" data-en="Internal operations tool">Herramienta interna de operaciones</span></span>
+            <span class="row-kind">Android</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r4" role="region" aria-labelledby="rh4"><div><div class="row-inner"><span></span>
+            <div><p data-en="An AppSheet-style internal app for logging operations with photos, built in phases: interface first, then database and photo server. In development.">App interna al estilo de AppSheet para registrar operaciones con fotos, hecha por fases: primero la interfaz, después la base de datos y el servidor de fotos. En desarrollo.</p></div>
+            <p class="stack">Kotlin · XML Views<br>Hilt · Coroutines</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r5" id="rh5">
+            <span class="row-ic"><img src="img/ic-cobranzas.png" alt="" width="44" height="44" loading="lazy"></span>
+            <span class="row-title">Cobranzas SAE<span class="row-sub" data-en="Collections app">App de cobranzas</span></span>
+            <span class="row-kind">Android</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r5" role="region" aria-labelledby="rh5"><div><div class="row-inner"><span></span>
+            <div><p data-en="App for the collections team with location tracking of each visit.">App para el equipo de cobranzas con registro de ubicación en cada visita.</p></div>
+            <p class="stack">Java · Location Services</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r6" id="rh6">
+            <span class="row-ic" aria-hidden="true">JS</span>
+            <span class="row-title"><span data-en="Conference games">Juegos para congresos</span><span class="row-sub" data-en="Touch screens at medical events">Pantallas táctiles en eventos médicos</span></span>
+            <span class="row-kind">Web</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r6" role="region" aria-labelledby="rh6"><div><div class="row-inner"><span></span>
+            <div><p data-en="Touch games for vertical screens at booths: a cold-chain maze, a mascot catching product boxes and a fairground strength tester. 30-second rounds anyone can play without instructions.">Juegos táctiles para pantallas verticales en stands: un laberinto de cadena de frío, una mascota que atrapa cajas de productos y un medidor de fuerza de feria. Partidas de 30 segundos que cualquiera juega sin instrucciones.</p></div>
+            <p class="stack">HTML · JavaScript<br>Canvas · Tailwind</p>
+          </div></div></div>
+        </div>
+
+        <div class="row">
+          <button class="row-head" type="button" aria-expanded="false" aria-controls="r7" id="rh7">
+            <span class="row-ic" aria-hidden="true">PY</span>
+            <span class="row-title"><span data-en="Automation and reporting">Automatización y reportes</span><span class="row-sub" data-en="Desktop tools and web reports">Herramientas de escritorio y reportes web</span></span>
+            <span class="row-kind">Python · PHP</span><span class="plus" aria-hidden="true"></span>
+          </button>
+          <div class="row-body" id="r7" role="region" aria-labelledby="rh7"><div><div class="row-inner"><span></span>
+            <div><p data-en="A desktop tool that reads PDF receipts and builds monthly Excel workbooks, packaged as an executable for non-technical staff. Plus a PHP reporting system for the data coming in from the field apps.">Una herramienta de escritorio que lee comprobantes en PDF y arma planillas Excel por mes, empaquetada como ejecutable para personal no técnico. Y un sistema de reportes en PHP para los datos que llegan de las apps de campo.</p></div>
+            <p class="stack">Python · pandas · openpyxl<br>CustomTkinter · PHP</p>
+          </div></div></div>
+        </div>
+      </div>
+      <p class="footnote" data-en="Internal company systems: shown without code, screenshots or real data.">Sistemas internos de la empresa: se muestran sin código, capturas ni datos reales.</p>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="sobre-mi" aria-labelledby="about-title" style="background:var(--bg-2)">
+    <div class="container">
+      <div class="s-head" data-reveal>
+        <span class="eyebrow" data-en="About">Sobre mí</span>
+        <h2 id="about-title" data-en="Close to the people who use what I build.">Cerca de quienes usan lo que construyo.</h2>
+      </div>
+      <div class="about">
+        <figure data-reveal>
+          <div class="portrait"><img src="img/marcelo.webp" alt="Retrato de Marcelo Parada" data-en-alt="Portrait of Marcelo Parada" width="282" height="257" loading="lazy" decoding="async"></div>
+          <figcaption>Santa Cruz, Bolivia</figcaption>
+        </figure>
+        <div class="about-text" data-reveal style="--d:80ms">
+          <p data-en="I'm an Electronic Systems Engineer. For three years I've built and maintained software at SAE Bolivia, and I also support the field teams who use it directly.">Soy ingeniero en sistemas electrónicos. Hace tres años desarrollo y mantengo software en SAE Bolivia, y además doy soporte directo a los equipos de campo que lo usan.</p>
+          <p data-en="That daily contact taught me to design for someone in a hurry, on the street, on an average phone. I bring the same focus to easyGO and to custom projects for clients.">Ese contacto diario me enseñó a diseñar para alguien con prisa, en la calle y con un teléfono común. Llevo ese mismo enfoque a easyGO y a proyectos a medida para clientes.</p>
+        </div>
+        <div class="facts" data-reveal>
+          <div>
+            <h3 data-en="Education">Formación</h3>
+            <ul>
+              <li data-en-html="Diploma in Mobile App Development and Programming <span>· Univalle</span>">Diplomado en Desarrollo y Programación de Aplicaciones Móviles <span>· Univalle</span></li>
+              <li><span data-en="Flutter, React Native, BaaS, UI/UX">Flutter, React Native, BaaS, UI/UX</span></li>
+              <li data-en="Electronic Systems Engineering">Ingeniería en Sistemas Electrónicos</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Stack</h3>
+            <ul>
+              <li>Kotlin, Java, Dart, JavaScript, PHP, Python</li>
+              <li>Compose, XML Views, Flutter, Astro</li>
+              <li>Supabase, Firebase, Oracle, SQLite</li>
+            </ul>
+          </div>
+          <div>
+            <h3 data-en="Languages">Idiomas</h3>
+            <ul>
+              <li data-en-html="Spanish <span>· native</span>">Español <span>· nativo</span></li>
+              <li data-en-html="English <span>· advanced</span>">Inglés <span>· avanzado</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contacto" aria-labelledby="contact-title">
+    <div class="container contact">
+      <div class="contact-intro" data-reveal>
+        <span class="eyebrow" data-en="Contact">Contacto</span>
+        <h2 id="contact-title" style="margin-top:12px" data-en="Let's talk.">Hablemos.</h2>
+        <p data-en="I'm open to development roles, remote or in Bolivia, and to custom projects. I reply in Spanish or English.">Estoy abierto a roles de desarrollo, remotos o en Bolivia, y a proyectos a medida. Respondo en español o inglés.</p>
+        <div class="direct">
+          <div class="direct-row"><span class="k">Email</span><a class="v link" href="mailto:mparadapalomino@gmail.com">mparadapalomino@gmail.com</a>
+            <button type="button" class="copy" data-copy="mparadapalomino@gmail.com" aria-label="Copiar email" data-en-aria="Copy email">
+              <svg class="cp" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2"/><path d="M10.5 5V3.5a1.5 1.5 0 0 0-1.5-1.5H3.5A1.5 1.5 0 0 0 2 3.5V9a1.5 1.5 0 0 0 1.5 1.5H5"/></svg>
+              <svg class="ok" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>
+            </button></div>
+          <div class="direct-row"><span class="k">LinkedIn</span><a class="v link" href="https://www.linkedin.com/in/marcelo-parada-977644199/" target="_blank" rel="noopener">marcelo-parada-977644199</a><span></span></div>
+          <div class="direct-row"><span class="k">WhatsApp</span><a class="v link" href="https://wa.me/59178086144" target="_blank" rel="noopener">+591 780 86144</a>
+            <button type="button" class="copy" data-copy="+59178086144" aria-label="Copiar número" data-en-aria="Copy number">
+              <svg class="cp" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5" y="5" width="8.5" height="8.5" rx="2"/><path d="M10.5 5V3.5a1.5 1.5 0 0 0-1.5-1.5H3.5A1.5 1.5 0 0 0 2 3.5V9a1.5 1.5 0 0 0 1.5 1.5H5"/></svg>
+              <svg class="ok" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5l3 3 6-7"/></svg>
+            </button></div>
+          <div class="direct-row"><span class="k">GitHub</span><a class="v link" href="https://github.com/Mparadapalomino" target="_blank" rel="noopener">Mparadapalomino</a><span></span></div>
+        </div>
+      </div>
+
+      <div class="form-wrap" data-reveal style="--d:80ms">
+        <form class="card" id="cform" novalidate>
+          <div class="field">
+            <span class="lbl" id="reason-lbl" data-en="What's it about?">¿Sobre qué es?</span>
+            <div class="chips" role="radiogroup" aria-labelledby="reason-lbl">
+              <label class="chip"><input type="radio" name="reason" id="reason-job" value="empleo" checked><span data-en="A role">Un puesto</span></label>
+              <label class="chip"><input type="radio" name="reason" id="reason-project" value="proyecto"><span data-en="A project">Un proyecto</span></label>
+              <label class="chip"><input type="radio" name="reason" id="reason-other" value="otro"><span data-en="Something else">Otra cosa</span></label>
+            </div>
+          </div>
+          <div class="field" id="f-name">
+            <label for="name" data-en="Name">Nombre</label>
+            <input class="input" id="name" name="name" autocomplete="name" placeholder="Tu nombre" data-en-ph="Your name" required>
+            <div class="err" id="name-err" aria-live="polite"><span></span></div>
+          </div>
+          <div class="field" id="f-email">
+            <label for="email">Email</label>
+            <input class="input" id="email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="tu@correo.com" data-en-ph="you@email.com" required>
+            <div class="err" id="email-err" aria-live="polite"><span></span></div>
+          </div>
+          <div class="field" id="f-msg">
+            <label for="msg" data-en="Message">Mensaje</label>
+            <textarea class="input" id="msg" name="msg" maxlength="1000" placeholder="Cuéntame qué necesitas" data-en-ph="Tell me what you need" required></textarea>
+            <div class="err" id="msg-err" aria-live="polite"><span></span></div>
+          </div>
+          <div class="form-foot">
+            <span class="counter" id="counter">0 / 1000</span>
+            <button type="submit" class="btn btn-primary submit" id="submit">
+              <span class="label" data-en="Send message">Enviar mensaje</span>
+              <svg class="spin" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/><path d="M16 9a7 7 0 0 0-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              <svg class="check" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5l3.2 3.2L14 5.5"/></svg>
+            </button>
+          </div>
+        </form>
+        <div class="success-panel" id="success" aria-live="polite">
+          <h3 data-en="Your message is ready.">Tu mensaje está listo.</h3>
+          <p id="success-text" data-en="Pick how you'd like to send it and it opens with everything filled in.">Elige por dónde enviarlo y se abre con todo completado.</p>
+          <div class="actions">
+            <a class="btn btn-primary" id="send-wa" href="#" target="_blank" rel="noopener"><span>WhatsApp</span><svg class="arrow up" width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3.5 8.5l5-5M4.5 3.5h4v4"/></svg></a>
+            <a class="btn btn-ghost" id="send-mail" href="#"><span data-en="Email">Correo</span></a>
+          </div>
+          <button type="button" class="again link" id="again" data-en="Write another message">Escribir otro mensaje</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <span class="signoff">From Santa Cruz, with love <span class="heart" aria-hidden="true">♡</span></span>
+    <span>© 2026 Marcelo Parada · <span class="clock" id="clock">--:--</span></span>
+  </div>
+</footer>
+
+<a href="#contacto" class="float float-cta" id="float-cta"><img src="img/marcelo.webp" alt="" width="40" height="40" loading="lazy"><span data-en="Got a project? Let's talk">¿Tienes un proyecto? Hablemos</span></a>
+<button type="button" class="float to-top" id="to-top" aria-label="Volver arriba" data-en-aria="Back to top">
+  <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="track" cx="24" cy="24" r="22"/><circle class="bar" id="ring" cx="24" cy="24" r="22"/></svg>
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5"/></svg>
+</button>
+
+<script>
+/* When deployed (GitHub Pages / Vercel), paste a Web3Forms access key here to receive the form by email.
+   Empty = the form prepares the message and offers WhatsApp or email, which works everywhere. */
+const FORM_ENDPOINT = "";            // e.g. "https://api.web3forms.com/submit"
+const FORM_KEY = "";                 // Web3Forms access key
+const WA = "59178086144", MAIL = "mparadapalomino@gmail.com";
+
+const root = document.documentElement;
+root.classList.add("js");
+const $ = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+
+/* ---------- i18n ---------- */
+let lang = "es";
+const COPY = {
+  es:{ req:"Este campo es obligatorio.", email:"Revisa el email, parece incompleto.", short:"Cuéntame un poco más (al menos 20 caracteres).",
+       fixT:"Faltan algunos datos", fixB:"Revisa los campos marcados.", okT:"Mensaje enviado", okB:"Gracias, te respondo pronto.",
+       errT:"No se pudo enviar", errB:"Prueba de nuevo o escríbeme por WhatsApp.", copied:"Copiado al portapapeles", copyFail:"No se pudo copiar. Selecciona el texto.",
+       open:"Abrir menú", close:"Cerrar menú", hi:"Hola Marcelo, ", reasons:{empleo:"Puesto",proyecto:"Proyecto",otro:"Consulta"} },
+  en:{ req:"This field is required.", email:"Check the email, it looks incomplete.", short:"Tell me a bit more (at least 20 characters).",
+       fixT:"A few things are missing", fixB:"Check the highlighted fields.", okT:"Message sent", okB:"Thanks, I'll get back to you soon.",
+       errT:"Couldn't send it", errB:"Try again or message me on WhatsApp.", copied:"Copied to clipboard", copyFail:"Couldn't copy. Select the text instead.",
+       open:"Open menu", close:"Close menu", hi:"Hi Marcelo, ", reasons:{empleo:"Role",proyecto:"Project",otro:"Question"} }
+};
+function applyLang(l){
+  lang = l;
+  $$("[data-en]").forEach(el => { if (el.dataset.es == null) el.dataset.es = el.textContent; el.textContent = l === "en" ? el.dataset.en : el.dataset.es; });
+  $$("[data-en-html]").forEach(el => { if (el.dataset.esHtml == null) el.dataset.esHtml = el.innerHTML; el.innerHTML = l === "en" ? el.dataset.enHtml : el.dataset.esHtml; });
+  $$("[data-en-alt]").forEach(el => { if (el.dataset.esAlt == null) el.dataset.esAlt = el.alt; el.alt = l === "en" ? el.dataset.enAlt : el.dataset.esAlt; });
+  $$("[data-en-ph]").forEach(el => { if (el.dataset.esPh == null) el.dataset.esPh = el.placeholder; el.placeholder = l === "en" ? el.dataset.enPh : el.dataset.esPh; });
+  $$("[data-en-aria]").forEach(el => { if (el.dataset.esAria == null) el.dataset.esAria = el.getAttribute("aria-label"); el.setAttribute("aria-label", l === "en" ? el.dataset.enAria : el.dataset.esAria); });
+  root.lang = l;
+  $$(".seg").forEach(s => { s.dataset.val = l; $$("button", s).forEach(b => b.setAttribute("aria-pressed", String(b.dataset.lang === l))); });
+  $$(".field.invalid").forEach(f => validate(f.id));
+  moveNavPill();
+  store.set("mp-lang", l);
+}
+$$(".seg button").forEach(b => b.addEventListener("click", () => applyLang(b.dataset.lang)));
+
+/* ---------- theme (transitions disabled during the swap so colors don't smear) ---------- */
+function isDark(){ const t = root.dataset.theme; return t ? t === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; }
+function syncThemeIcon(){ root.classList.toggle("is-dark", isDark()); }
+$("#theme-btn").addEventListener("click", () => {
+  root.classList.add("no-transitions");
+  root.dataset.theme = isDark() ? "light" : "dark";
+  store.set("mp-theme", root.dataset.theme);
+  syncThemeIcon();
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("no-transitions")));
+});
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", syncThemeIcon);
+const savedTheme = store.get("mp-theme"); if (savedTheme === "dark" || savedTheme === "light") root.dataset.theme = savedTheme;
+syncThemeIcon();
+
+/* ---------- image skeletons ---------- */
+$$(".screen img, .portrait img").forEach(img => {
+  const box = img.parentElement;
+  const done = () => box.classList.add("loaded");
+  if (img.complete && img.naturalWidth) done(); else { img.addEventListener("load", done, { once:true }); img.addEventListener("error", done, { once:true }); }
+});
+
+/* ---------- mobile sheet ---------- */
+const burger = $("#burger"), sheet = $("#sheet"), main = $("main");
+function setMenu(open){
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? COPY[lang].close : COPY[lang].open);
+  sheet.classList.toggle("open", open);
+  sheet.setAttribute("aria-hidden", String(!open));
+  document.body.classList.toggle("menu-open", open);
+  main.inert = open;
+  if (open) setTimeout(() => $("nav a", sheet).focus({ preventScroll:true }), 200);
+}
+burger.addEventListener("click", () => setMenu(burger.getAttribute("aria-expanded") !== "true"));
+$$("a", sheet).forEach(a => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", e => { if (e.key === "Escape" && sheet.classList.contains("open")) { setMenu(false); burger.focus(); } });
+matchMedia("(min-width: 861px)").addEventListener("change", e => { if (e.matches) setMenu(false); });
+
+/* ---------- active section pill ---------- */
+const navLinks = $$("#navlinks a"), pill = $("#navpill");
+let activeId = null;
+function moveNavPill(){
+  const a = navLinks.find(l => l.getAttribute("href") === "#" + activeId);
+  navLinks.forEach(l => l.toggleAttribute("aria-current", l === a));
+  if (!a) { pill.style.opacity = "0"; return; }
+  pill.style.width = a.offsetWidth + "px";
+  pill.style.transform = `translateX(${a.offsetLeft}px)`;
+  pill.style.opacity = "1";
+}
+const sections = ["proyectos","experiencia","sobre-mi","contacto"].map(id => document.getElementById(id));
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { activeId = en.target.id; moveNavPill(); } });
+}, { rootMargin:"-45% 0px -50% 0px" });
+sections.forEach(s => secObs.observe(s));
+addEventListener("resize", moveNavPill);
+
+/* ---------- scroll reveal: only elements that begin below the fold get hidden, so the first frame is complete ---------- */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("revealed"); en.target.classList.remove("pre"); revObs.unobserve(en.target); } });
+}, { rootMargin:"0px 0px -8% 0px", threshold:.08 });
+if (!reduce.matches && "IntersectionObserver" in window) {
+  $$("[data-reveal]").forEach(el => {
+    if (el.getBoundingClientRect().top > innerHeight * 0.92) {
+      const group = el.closest("[data-reveal-group]");
+      if (group) el.style.setProperty("--d", ($$("[data-reveal]", group).indexOf(el) * 60) + "ms");
+      el.classList.add("pre"); revObs.observe(el);
+    }
+  });
+}
+
+/* ---------- header, floating CTA, back to top, hero parallax (one rAF-throttled scroll handler) ---------- */
+const header = $("#header"), cta = $("#float-cta"), toTop = $("#to-top"), contact = $("#contacto");
+const parallax = $$("[data-parallax]"), progressBar = $("#progress"), ring = $("#ring");
+addEventListener("resize", () => requestAnimationFrame(onScroll));
+let ticking = false, contactVisible = false;
+new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; onScroll(); }, { threshold:.15 }).observe(contact);
+function onScroll(){
+  const y = scrollY, vh = innerHeight;
+  const max = document.documentElement.scrollHeight - vh, p = max > 0 ? Math.min(1, Math.max(0, y / max)) : 0;
+  progressBar.style.transform = `scaleX(${p})`;
+  ring.style.strokeDashoffset = (138.23 * (1 - p)).toFixed(2);
+  header.classList.toggle("scrolled", y > 8);
+  cta.classList.toggle("show", y > vh * 0.9 && !contactVisible);
+  toTop.classList.toggle("show", y > vh * 1.4);
+  if (!reduce.matches && y < vh * 1.2) parallax.forEach(p => p.style.translate = `0 ${(y * parseFloat(p.dataset.parallax)).toFixed(1)}px`);
+  ticking = false;
+}
+addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive:true });
+toTop.addEventListener("click", () => { scrollTo({ top:0, behavior: reduce.matches ? "auto" : "smooth" }); $(".logo").focus({ preventScroll:true }); });
+// smooth anchor scrolling that respects reduced motion and the sticky header
+$$('a[href^="#"]').forEach(a => a.addEventListener("click", e => {
+  const id = a.getAttribute("href").slice(1); const t = id ? document.getElementById(id) : null;
+  if (!t) return; e.preventDefault();
+  const top = id === "top" ? 0 : t.getBoundingClientRect().top + scrollY - 72;
+  scrollTo({ top, behavior: reduce.matches ? "auto" : "smooth" });
+}));
+
+/* ---------- accordion rows ---------- */
+$$(".row-head").forEach(h => h.addEventListener("click", () => {
+  const row = h.parentElement, open = !row.classList.contains("open");
+  row.classList.toggle("open", open); h.setAttribute("aria-expanded", String(open));
+}));
+
+/* ---------- toasts ---------- */
+function toast(kind, title, body){
+  const t = document.createElement("div");
+  t.className = "toast " + kind; t.setAttribute("role", kind === "error" ? "alert" : "status");
+  t.innerHTML = `<span class="ti" aria-hidden="true">${kind === "ok"
+    ? '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.3 2.3L9.5 3.5"/></svg>'
+    : '<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3v3.5M6 8.8v.2"/></svg>'}</span><div><strong></strong><span></span></div>`;
+  $("strong", t).textContent = title; $("div > span", t).textContent = body || "";
+  $("#toasts").appendChild(t);
+  setTimeout(() => { t.classList.add("out"); t.addEventListener("animationend", () => t.remove(), { once:true }); }, 3800);
+}
+
+/* ---------- copy buttons ---------- */
+$$(".copy").forEach(b => b.addEventListener("click", () => {
+  const ok = () => { b.classList.add("done"); toast("ok", COPY[lang].copied, b.dataset.copy); setTimeout(() => b.classList.remove("done"), 1600); };
+  const fail = () => { const r = document.createRange(); r.selectNodeContents(b.previousElementSibling); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("error", COPY[lang].copyFail); };
+  try { navigator.clipboard.writeText(b.dataset.copy).then(ok, fail); } catch(e){ fail(); }
+}));
+
+/* ---------- form ---------- */
+const form = $("#cform"), msg = $("#msg"), counter = $("#counter"), submit = $("#submit"), success = $("#success");
+const rules = {
+  "f-name": () => $("#name").value.trim() ? "" : COPY[lang].req,
+  "f-email": () => { const v = $("#email").value.trim(); if (!v) return COPY[lang].req; return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? "" : COPY[lang].email; },
+  "f-msg": () => { const v = msg.value.trim(); if (!v) return COPY[lang].req; return v.length >= 20 ? "" : COPY[lang].short; }
+};
+const touched = new Set();
+function validate(id){
+  const f = document.getElementById(id), m = rules[id]();
+  f.classList.toggle("invalid", !!m);
+  const input = $(".input", f); input.setAttribute("aria-invalid", String(!!m)); input.setAttribute("aria-describedby", $(".err", f).id);
+  if (m) $(".err span", f).textContent = m;
+  return !m;
+}
+Object.keys(rules).forEach(id => {
+  const input = $(".input", document.getElementById(id));
+  input.addEventListener("blur", () => { if (input.value.trim()) touched.add(id); if (touched.has(id)) validate(id); });
+  input.addEventListener("input", () => { if (touched.has(id)) validate(id); });
+});
+msg.addEventListener("input", () => counter.textContent = `${msg.value.length} / 1000`);
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  Object.keys(rules).forEach(id => touched.add(id));
+  const bad = Object.keys(rules).filter(id => !validate(id));
+  if (bad.length) {
+    const f = document.getElementById(bad[0]);
+    f.classList.remove("shake"); void f.offsetWidth; f.classList.add("shake");
+    $(".input", f).focus();
+    toast("error", COPY[lang].fixT, COPY[lang].fixB);
+    return;
+  }
+  const data = { name:$("#name").value.trim(), email:$("#email").value.trim(), reason:form.reason.value, message:msg.value.trim() };
+  submit.classList.add("loading"); submit.disabled = true;
+
+  if (FORM_ENDPOINT && FORM_KEY) {
+    try {
+      const r = await fetch(FORM_ENDPOINT, { method:"POST", headers:{ "Content-Type":"application/json", Accept:"application/json" },
+        body: JSON.stringify({ access_key:FORM_KEY, subject:`Portafolio · ${COPY[lang].reasons[data.reason]} · ${data.name}`, ...data }) });
+      if (!r.ok) throw new Error(r.status);
+      submit.classList.replace("loading", "success");
+      toast("ok", COPY[lang].okT, COPY[lang].okB);
+      setTimeout(resetForm, 1800);
+    } catch(err) {
+      submit.classList.remove("loading"); submit.disabled = false;
+      toast("error", COPY[lang].errT, COPY[lang].errB);
+    }
+    return;
+  }
+  // No endpoint: prepare the message for WhatsApp or email
+  const text = `${COPY[lang].hi}${data.message}\n\n— ${data.name} (${data.email})`;
+  const subject = `Portafolio · ${COPY[lang].reasons[data.reason]} · ${data.name}`;
+  $("#send-wa").href = `https://wa.me/${WA}?text=${encodeURIComponent(text)}`;
+  $("#send-mail").href = `mailto:${MAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(text)}`;
+  setTimeout(() => {
+    submit.classList.replace("loading", "success");
+    setTimeout(() => { success.classList.add("show"); $("#send-wa").focus({ preventScroll:true }); }, 260);
+  }, 520);
+});
+function resetForm(){
+  form.reset(); touched.clear(); counter.textContent = "0 / 1000";
+  $$(".field", form).forEach(f => f.classList.remove("invalid"));
+  submit.classList.remove("loading", "success"); submit.disabled = false;
+}
+$("#again").addEventListener("click", () => { success.classList.remove("show"); resetForm(); $("#name").focus(); });
+
+/* ---------- local time in Santa Cruz ---------- */
+const clock = $("#clock");
+function tick(){ try { clock.textContent = new Intl.DateTimeFormat("es-BO", { hour:"2-digit", minute:"2-digit", hour12:false, timeZone:"America/La_Paz" }).format(new Date()) + " (GMT-4)"; } catch(e){} }
+tick(); setInterval(tick, 30000);
+
+/* ---------- boot ---------- */
+const savedLang = store.get("mp-lang");
+applyLang(savedLang === "en" ? "en" : "es");
+onScroll();
+</script>
+
+</body>
+</html>
