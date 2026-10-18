@@ -298,7 +298,7 @@ main{overflow-x:clip}
 /* ---------- about ---------- */
 .about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
 .about figure{grid-column:1/span 3;margin:0}
-.portrait{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--butter);aspect-ratio:282/257}
+.portrait{position:relative;border-radius:var(--r-lg);overflow:hidden;background:var(--butter);aspect-ratio:4/5}
 .portrait img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 500ms var(--ease-out)}
 .portrait.loaded img{opacity:1}
 .about figcaption{margin-top:12px;font-size:14px;color:var(--muted)}
@@ -481,7 +481,7 @@ footer .container{align-items:center}
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="intro fade-in"><span class="avatar"><img src="img/marcelo.webp" alt="Marcelo Parada" width="56" height="56" decoding="async" fetchpriority="high"><span class="dot" aria-hidden="true"></span></span><span class="intro-text"><span class="hello" data-en="Hi, I'm Marcelo Parada">Hola, soy Marcelo Parada</span><span class="avail" data-en="Open to roles and projects">Disponible para roles y proyectos</span></span></div>
+        <div class="intro fade-in"><span class="avatar"><img src="img/avatar.webp" alt="Marcelo Parada" width="56" height="56" decoding="async" fetchpriority="high"><span class="dot" aria-hidden="true"></span></span><span class="intro-text"><span class="hello" data-en="Hi, I'm Marcelo Parada">Hola, soy Marcelo Parada</span><span class="avail" data-en="Open to roles and projects">Disponible para roles y proyectos</span></span></div>
         <h1 id="hero-title">
           <span class="line"><span data-en="I build mobile">Construyo apps</span></span>
           <span class="line"><span data-en="and web apps,">móviles y web,</span></span>
@@ -717,7 +717,7 @@ footer .container{align-items:center}
       </div>
       <div class="about">
         <figure data-reveal>
-          <div class="portrait"><img src="img/marcelo.webp" alt="Retrato de Marcelo Parada" data-en-alt="Portrait of Marcelo Parada" width="282" height="257" loading="lazy" decoding="async"></div>
+          <div class="portrait"><img src="img/marcelo.webp" alt="Retrato de Marcelo Parada" data-en-alt="Portrait of Marcelo Parada" width="880" height="1100" loading="lazy" decoding="async"></div>
           <figcaption>Santa Cruz, Bolivia</figcaption>
         </figure>
         <div class="about-text" data-reveal style="--d:80ms">
@@ -831,7 +831,7 @@ footer .container{align-items:center}
   </div>
 </footer>
 
-<a href="#contacto" class="float float-cta" id="float-cta"><img src="img/marcelo.webp" alt="" width="40" height="40" loading="lazy"><span data-en="Got a project? Let's talk">¿Tienes un proyecto? Hablemos</span></a>
+<a href="#contacto" class="float float-cta" id="float-cta"><img src="img/avatar.webp" alt="" width="40" height="40" loading="lazy"><span data-en="Got a project? Let's talk">¿Tienes un proyecto? Hablemos</span></a>
 <button type="button" class="float to-top" id="to-top" aria-label="Volver arriba" data-en-aria="Back to top">
   <svg class="ring" viewBox="0 0 48 48" aria-hidden="true"><circle class="track" cx="24" cy="24" r="22"/><circle class="bar" id="ring" cx="24" cy="24" r="22"/></svg>
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14V4M4.5 8.5L9 4l4.5 4.5"/></svg>
