@@ -150,6 +150,13 @@ body.menu-open{overflow:hidden}
 .status{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--ink-2);padding:6px 14px 6px 10px;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line);background:var(--surface)}
 .dot{position:relative;width:8px;height:8px;border-radius:50%;background:var(--live)}
 .dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--live);animation:ping 2.4s var(--ease-out) infinite}
+.intro{display:flex;align-items:center;gap:14px}
+.avatar{position:relative;flex:none;width:56px;height:56px}
+.avatar img{width:56px;height:56px;border-radius:50%;object-fit:cover;background:var(--butter);box-shadow:0 0 0 1px var(--line),0 6px 16px -8px rgba(40,30,20,.4)}
+.avatar .dot{position:absolute;right:1px;bottom:1px;width:12px;height:12px;box-shadow:0 0 0 2.5px var(--bg)}
+.intro-text{display:grid;gap:1px;line-height:1.3}
+.hello{font-size:17px;font-weight:600;letter-spacing:-.015em}
+.avail{font-size:14px;color:var(--muted)}
 @keyframes ping{0%{transform:scale(1);opacity:.6}70%,100%{transform:scale(2.6);opacity:0}}
 .hero h1{margin-top:28px;font-size:clamp(42px,6.4vw,80px);line-height:1;letter-spacing:-.045em;font-weight:600}
 .hero h1 .line{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
@@ -178,7 +185,7 @@ body.menu-open{overflow:hidden}
 .js .hero h1 .line:nth-child(2)>span{animation-delay:70ms}
 .js .hero h1 .line:nth-child(3)>span{animation-delay:140ms}
 .js .hero .fade-in{animation:fadeUp var(--t-slow) var(--ease-out) both}
-.js .hero .status.fade-in{animation-delay:0ms}
+.js .hero .intro.fade-in{animation-delay:0ms}
 .js .hero .lead.fade-in{animation-delay:220ms}
 .js .hero .actions.fade-in{animation-delay:300ms}
 .js .hero-art .phone{animation:settle 900ms var(--ease-out) backwards}
@@ -475,13 +482,13 @@ footer .container{align-items:center}
   <div class="container">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <span class="status fade-in"><span class="dot" aria-hidden="true"></span><span data-en="Open to roles and projects">Disponible para roles y proyectos</span></span>
+        <div class="intro fade-in"><span class="avatar"><img src="img/marcelo.webp" alt="Marcelo Parada" width="56" height="56" decoding="async" fetchpriority="high"><span class="dot" aria-hidden="true"></span></span><span class="intro-text"><span class="hello" data-en="Hi, I'm Marcelo Parada">Hola, soy Marcelo Parada</span><span class="avail" data-en="Open to roles and projects">Disponible para roles y proyectos</span></span></div>
         <h1 id="hero-title">
           <span class="line"><span data-en="I build mobile">Construyo apps</span></span>
           <span class="line"><span data-en="and web apps,">móviles y web,</span></span>
           <span class="line"><span class="soft" data-en="end to end.">de punta a punta.</span></span>
         </h1>
-        <p class="lead fade-in" data-en="I'm Marcelo Parada, a full-stack developer focused on mobile, based in Santa Cruz, Bolivia. I make native Android apps, cross-platform apps with Flutter, websites, and the backends behind them.">Soy Marcelo Parada, desarrollador full-stack con foco en mobile, en Santa Cruz, Bolivia. Hago apps nativas para Android, multiplataforma con Flutter, sitios web y los backends que las sostienen.</p>
+        <p class="lead fade-in" data-en="Full-stack developer focused on mobile, based in Santa Cruz, Bolivia. I make native Android apps, cross-platform apps with Flutter, websites, and the backends behind them.">Desarrollador full-stack con foco en mobile, en Santa Cruz, Bolivia. Hago apps nativas para Android, multiplataforma con Flutter, sitios web y los backends que las sostienen.</p>
         <div class="actions fade-in">
           <a href="#proyectos" class="btn btn-primary"><span data-en="See my work">Ver proyectos</span><svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
           <a href="#contacto" class="btn btn-ghost"><span data-en="Get in touch">Escríbeme</span></a>
